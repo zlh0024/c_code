@@ -150,18 +150,18 @@
 //}
 
 
-//3.10:从键盘输入输入一个大写字母，在显示屏上输出对应的小写字母
+//例3.10:从键盘输入输入一个大写字母，在显示屏上输出对应的小写字母
 //'a'的ASC码值为97，'A'的ASC码值为65，  大写字母+32-->小写字母
-#include<stdio.h>
-int main()
-{
-	char ch1,ch2;
-	printf("输入大写字母：");
-	//scanf("%c",&ch1);
-	ch1=getchar();
-	ch2=ch1+32;
-	//printf("输出小写字母：%c\n",ch2);
-	putchar(ch2);
-	putchar('\n');
-	return 0;
-}
+//#include<stdio.h>
+//int main()
+//{
+//	char ch1,ch2;
+//	printf("输入大写字母：");
+//	//scanf("%c",&ch1);
+//	ch1=getchar();
+//	ch2=ch1+32;
+//	//printf("输出小写字母：%c\n",ch2);
+//	putchar(ch2);
+//	putchar('\n');
+//	return 0;
+//}
