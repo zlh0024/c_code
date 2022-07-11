@@ -456,4 +456,117 @@
 //	return max;
 //}
 
-//
+//例7.14：有一个一维数组，内存放10个学生成绩，写一个函数，
+//当主函数调用此函数后，能求出平均分、最高分、最低分。
+//#include<stdio.h.>
+//#define N 10
+//float Max=0,Min=0;
+//int main()
+//{
+//	float average(float a[],int n);
+//	float a[N]={0},aver=0;
+//	int i;
+//	printf("输入%d个学生的成绩：\n",N);
+//	for(i=0;i<N;i++)
+//	{
+//		scanf("%f",&a[i]);
+//	}
+//	aver=average(a,N);
+//	printf("平均分为:%f\n最高分为:%f\n最低分为:%f\n",aver,Max,Min);
+//	return 0;
+//}
+////求平均分、最高分、最低分
+//float average(float a[],int n)
+//{
+//	float sum=a[0],aver;
+//	int i;
+//	Max=a[0];
+//	Min=a[0];
+//	for(i=1 ;i<n;i++)
+//	{
+//		if(Max<a[i])
+//			Max=a[i];
+//		else if(Min>a[i])
+//			Min=a[i];
+//		sum=sum+a[i];
+//	}
+//	aver=sum/n;
+//	return aver;
+//}
+
+//例7.17：输出1~5的阶乘值
+//#include<stdio.h>
+//int main()
+//{
+//	int fac(int n);
+//	int i=0;
+//	for(i=1;i<=5;i++)
+//	{
+//		printf("%d!=%d\n",i,fac(i));
+//	}
+//	return 0;
+//}
+//int fac(int n)
+//{
+//	static int f=1;
+//	f=f*n;
+//	return f;
+//}
+
+//例7.18：
+//#include<stdio.h>
+//int main()
+//{
+//	int max();
+//	extern int A,B,C;
+//	scanf("%d%d%d",&A,&B,&C);
+//	printf("最大值：%d",max());
+//	return 0;
+//}
+//int A,B,C;
+//int max()
+//{
+//	int m;
+//	m=A>B?A:B;
+//	if(C>m)
+//		m=C;
+//	return m;
+//}
+
+//例7.20：有一个字符串，内有若干个字符，
+//现输入一个字符，要求程序将字符串中字符删去。用外部函数实现。
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	void enter_string(char str[]);
+//	char delete_string(char str[],char c);
+//	void print_string(char str[]);
+//	char c,str[80];
+//	printf("输入一个字符串：\n");
+//	enter_string(str);
+//	printf("输入一个字符：\n");
+//	scanf("%c",&c);
+//	delete_string(str,c);
+//	printf("输出删除后的字符串：\n");
+//	print_string(str);
+//	return 0;
+//}
+//void enter_string(char str[])
+//{
+//	gets(str);
+//}
+//char delete_string(char str[],char c)
+//{
+//	int i,j;
+//	for(i=j=0;str[i]!='\0';i++)
+//	{
+//		if(str[i]!=c)
+//			str[j++]=str[i];
+//	}
+//	str[j]='\0';
+//}
+//void print_string(char str[])
+//{
+//	printf("%s\n",str);
+//}
