@@ -714,41 +714,107 @@
 //}
 
 //例8.27：将若干字符串按字母顺序（由小到大）输出
-#include<stdio.h>
-#include<string.h>
-int main()
-{
-	void sort(char * name[],int n);
-	void print(char * name[],int n);
-	char * name[]={"Follow me","BASIC","Great Wall","FORTRAN","Computer design"};
-	int n=5;
-	sort(name,n);
-	print(name,n);
-	return 0;
-}
-void sort(char * name[],int n)
-{
-	char * temp;
-	int i,j,k;
-	for(i=0;i<n-1;i++)
-	{
-		k=i;
-		for(j=i+1;j<n;j++)
-		{
-			if(strcmp(name[k],name[j])>0)
-				k=j;
-		}
-		if(k!=i)
-		{
-			temp=name[i];
-			name[i]=name[k];
-			name[k]=temp;
-		}
-	}
-}
-void print(char * name[],int n)
-{
-	int i;
-	for(i=0;i<n;i++)
-		printf("%s\n",name[i]);
-}
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	void sort(char * name[],int n);
+//	void print(char * name[],int n);
+//	char * name[]={"Follow me","BASIC","Great Wall","FORTRAN","Computer design"};
+//	int n=5;
+//	sort(name,n);
+//	print(name,n);
+//	return 0;
+//}
+//void sort(char * name[],int n)
+//{
+//	char * temp;
+//	int i,j,k;
+//	for(i=0;i<n-1;i++)
+//	{
+//		k=i;
+//		for(j=i+1;j<n;j++)
+//		{
+//			if(strcmp(name[k],name[j])>0)
+//				k=j;
+//		}
+//		if(k!=i)
+//		{
+//			temp=name[i];
+//			name[i]=name[k];
+//			name[k]=temp;
+//		}
+//	}
+//}
+//void print(char * name[],int n)
+//{
+//	int i;
+//	for(i=0;i<n;i++)
+//		printf("%s\n",name[i]);
+//}
+
+//例8.28：使用指向指针数据的指针变量
+//#include<stdio.h>
+//int main()
+//{
+//	char * name[]={"Follow me","BASIC","Great Wall","FORTRAN","Computer design"};
+//	char **p;
+//	int i;
+//	for(i=0;i<5;i++)
+//	{
+//		p=name+i;
+//		printf("%d\n",p);
+//		printf("%d\n",*p);
+//		printf("%s\n",* p);
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+//例8.29：有一个指针数组，其元素分别指向一个整型数组的元素，用指向指针数据的指针变量，输出整型数组各元素的值。
+//#include<stdio.h>
+//int main()
+//{
+//	int a[5]={0,1,2,3,4};
+//	int * num[5];
+//	int **p;
+//	int i;
+//	for(i=0;i<5;i++)
+//	{
+//		num[i]=&a[i];
+//	}
+//	p=num;
+//	for(i=0;i<5;i++)
+//	{
+//		printf("%4d",**(p+i));
+//	}
+//	printf("\n");
+//	return 0;
+//}
+
+//例8.30：建立动态数组，输入5个学生的成绩，另外用一个函数检查其中有无低于60分的，输出不合格的成绩
+//#include<stdio.h>
+//#include<stdlib.h>
+//int main()
+//{
+//	void check(int *p);
+//	int *p1,i;
+//	p1=(int *)malloc(5*sizeof(int));
+//	for(i=0;i<5;i++)
+//	{
+//		scanf("%d",p1+i);
+//	}
+//	check(p1);
+//	return 0;
+//}
+//void check(int *p)
+//{
+//	int i;
+//	printf("They are fail:");
+//	for(i=0;i<5;i++)
+//		/*if(*(p+i)<60)*/
+//		if(p[i]<60)
+//			printf("%3d ",p[i]);
+//	printf("\n");
+//}
+

@@ -18,5 +18,8 @@
     <ClCompile Include="eg01.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="exercise01.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
