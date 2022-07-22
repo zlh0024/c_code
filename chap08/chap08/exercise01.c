@@ -1166,84 +1166,378 @@
 //1. 求第一门课的平均分，就是将第0列数据相加除以学生人数
 //2. 遍历每个学生的成绩，判断不及格次数，若大于2则输出信息即可
 //3. 统计每个学生总成绩，以及对每门课程成绩进行判断即可
-#include<stdio.h>
-float avg(int arry[][5], int n)
-{
-	int i;
-	float sum = 0;
-	for (i = 0; i < n; i++)
-	{
-		sum += arry[i][0];
-	}
-	printf("Average of course 1:%f\n", (sum / n)); 
-	return (sum / n);
-}
-void fail(int arry[][5], int n)
-{
-	int sum,fail_count,i,j;
-	printf("Information on students who fail in more than two courses: ");
-	for (i = 0; i < n; i++)
-	{
-		sum = 0;
-		fail_count = 0;
-		for (j = 0; j < 5; j++) 
-		{
-			if (arry[i][j] < 60) 
-			{
-				fail_count++;
-			}
-		}
-		if (fail_count <= 2)
-		{
-			continue; 
-		}
-		printf("seq:%d ",i + 1);
-		printf("score: ");
-		for (j = 0; j < 5; j++) 
-		{
-			sum += arry[i][j];
-			printf("%d ", arry[i][j]);
-		}
-		printf("avg:%d ", sum / 5);
-		printf("\n");
-	}
-}
-//找出平均成绩在90分以上或全部课程成绩在85分以上的学生。
-void excellent(int arry[][5], int n)
-{
-	int i, j;
-	for (i = 0; i < n; i++)
-	{
-	    int sum = 0, count = 0;
-		for (j = 0; j < 5; j++)
-		{
-			sum += arry[i][j]; //计算总分用于计算平均分
-		    if (arry[i][j] > 85) 
-			{
-				count++; //若每门课都大于85	则count总会与j同步++ 
-			}
-		}
-		if ((sum / 5) > 90 || count == j)
-		{
-			printf("Excellent students: %d\n", i + 1);
-		}
-	}
-	return;
-}
-int main()
-{
-	int arry[4][5]={0},i,j;
-	printf("Please enter a 4x5 matrix:\n");
-	for (i = 0; i < 4; i++) 
-	{
-		for (j = 0; j < 5; j++) 
-		{
-			scanf_s("%d", &arry[i][j]);
-		}
-	}
-	avg(arry, 4); 
-	fail(arry, 4);
-	excellent(arry, 4);
-	printf("\n"); 
-	return 0;
-}
+//#include<stdio.h>
+//float avg(int arry[][5], int n)
+//{
+//	int i;
+//	float sum = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		sum += arry[i][0];
+//	}
+//	printf("Average of course 1:%f\n", (sum / n)); 
+//	return (sum / n);
+//}
+//void fail(int arry[][5], int n)
+//{
+//	int sum,fail_count,i,j;
+//	printf("Information on students who fail in more than two courses: ");
+//	for (i = 0; i < n; i++)
+//	{
+//		sum = 0;
+//		fail_count = 0;
+//		for (j = 0; j < 5; j++) 
+//		{
+//			if (arry[i][j] < 60) 
+//			{
+//				fail_count++;
+//			}
+//		}
+//		if (fail_count <= 2)
+//		{
+//			continue; 
+//		}
+//		printf("seq:%d ",i + 1);
+//		printf("score: ");
+//		for (j = 0; j < 5; j++) 
+//		{
+//			sum += arry[i][j];
+//			printf("%d ", arry[i][j]);
+//		}
+//		printf("avg:%d ", sum / 5);
+//		printf("\n");
+//	}
+//}
+////找出平均成绩在90分以上或全部课程成绩在85分以上的学生。
+//void excellent(int arry[][5], int n)
+//{
+//	int i, j;
+//	for (i = 0; i < n; i++)
+//	{
+//	    int sum = 0, count = 0;
+//		for (j = 0; j < 5; j++)
+//		{
+//			sum += arry[i][j]; //计算总分用于计算平均分
+//		    if (arry[i][j] > 85) 
+//			{
+//				count++; //若每门课都大于85	则count总会与j同步++ 
+//			}
+//		}
+//		if ((sum / 5) > 90 || count == j)
+//		{
+//			printf("Excellent students: %d\n", i + 1);
+//		}
+//	}
+//	return;
+//}
+//int main()
+//{
+//	int arry[4][5]={0},i,j;
+//	printf("Please enter a 4x5 matrix:\n");
+//	for (i = 0; i < 4; i++) 
+//	{
+//		for (j = 0; j < 5; j++) 
+//		{
+//			scanf_s("%d", &arry[i][j]);
+//		}
+//	}
+//	avg(arry, 4); 
+//	fail(arry, 4);
+//	excellent(arry, 4);
+//	printf("\n"); 
+//	return 0;
+//}
+
+////16. 输入一个字符串,内有数字和非数字字符,
+////例如：A123x456 17960? 302tab5876，
+////将其中连续的数字作为一个整数,依次存放到一数组a中。
+////例如,123放在a[0],456放在a[1].....统计共有多少个整数,并输出这些数。
+////遇到数字字符，则开始统计连续数字字符的个数，统计完毕后，
+////则从右往左每次乘以10（除了个位数）作为数字的单位，最终相加得到数字；
+////然后越过这个数字，从后边继续查找。
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	void count_digit(char *str);
+//	char str[100]={0};
+//	printf("输入一个字符串：\n");
+//	gets(str);
+//	printf("输出数字：\n");
+//	count_digit(str);
+//	return 0;
+//}
+//void count_digit(char *str)
+//{
+//	int digit[32], count = 0;
+//	char *ptr = str; 
+//	int i = 0, str_len = strlen(str);
+//	int len,sum,unit,j;
+//	while (i < str_len)
+//	{
+//		if (*(ptr+i) >= '0' && *(ptr+i) <= '9')
+//		{
+//			len = 1;//用于统计连续数字的个数
+//			while (*(ptr + i + len) >= '0' && *(ptr + i+ len) <= '9' && (i+len) < str_len)
+//			{
+//				//找出从当前位置连续数字的个数 
+//				len++; 
+//			}
+//			sum = *(ptr + i + len - 1) - '0';//先获取个位数的数据
+//			unit = 1;//每一位的单位，从十位开始每次乘以10作为单位
+//			for (j = len - 2; j >= 0; j--) 
+//			{
+//				//从右往左逐个处理
+//				unit *= 10;
+//				sum += (*(ptr + i + j) - '0') * unit; 
+//			}
+//			digit[count++] = sum;
+//			i += len; // i需要加上len的长度，越过这个数字，防止一个连续数字中的字符重复处理 
+//			continue;
+//		}
+//		i++; 
+//	}
+//	for ( i = 0; i < count; i++)
+//	{
+//		printf("%d ", digit[i]);
+//	}
+//	return;
+//}
+
+//17. 写一函数，实现两个字符串的比较。
+//即自己写一个strcmp函数,函数原型为int strcmp(char * p1 ,char * p2);
+//设p1指向字符串s1, p2指向字符串s2。
+//要求当s1=s2时,返回值为0;
+//若s1≠s2,返回它们二者第1个不同字符的ASCII码差值(如"BOY"与"BAD" ,第2个字母不同,0与A之差为79- 65=14)。
+//如果s1>s2,则输出正值;如果s1<s2,则输出负值。
+//#include<stdio.h>
+//int main()
+//{
+//	int mystrcmp(char * p1 ,char * p2);
+//	char str1[30]={0},str2[30]={0};
+//	printf("输入字符串1：\n");
+//	gets(str1);
+//	printf("输入字符串2：\n");
+//	gets(str2);
+//	printf("输出两个字符串比较的值为：%d\n",mystrcmp(str1,str2));
+//	return 0;
+//}
+//int mystrcmp(char *str1, char *str2)
+//{
+//	char *ptr1 = str1;
+//	char *ptr2 = str2;
+//	int res;
+//	while (*ptr1 != '\0' && *ptr2 != '\0') 
+//	{
+//		if (*ptr1 != *ptr2)
+//		{
+//			res = *ptr1 - *ptr2;
+//			break;
+//		}
+//		ptr1++;
+//		ptr2++;
+//	}
+//	if (*ptr1 == '\0' || *ptr2 == '\0') 
+//	{
+//		//注意一个字符串到达结尾或者两个都到达结尾的情况
+//		res = *ptr1 - *ptr2;
+//	}
+//	return res;
+//}
+
+//改进1：
+//#include<stdio.h>
+//int main()
+//{
+//	char buf1[1024] = { 0 };
+//	char buf2[1024] = { 0 };
+//	while (1) 
+//	{
+//		printf("Please enter two strings:\n");
+//		gets_s(buf1, 1024);
+//		gets_s(buf2, 1024);
+//		printf("mystrcmp:%d", mystrcmp(buf1, buf2));
+//		printf("\n");
+//	}
+//    return 0;
+//}
+//int mystrcmp(char *str1, char *str2)
+//{
+//	char *ptr1 = str1;
+//	char *ptr2 = str2;
+//	int res;
+//	while (*ptr1 != '\0' && *ptr2 != '\0') 
+//	{
+//		if (*ptr1 != *ptr2)
+//		{
+//			res = *ptr1 - *ptr2;
+//			break;
+//		}
+//		ptr1++;
+//		ptr2++;
+//	}
+//	if (*ptr1 == '\0' || *ptr2 == '\0') 
+//	{
+//		//注意一个字符串到达结尾或者两个都到达结尾的情况
+//		res = *ptr1 - *ptr2;
+//	}
+//	return res;
+//}
+
+//18. 编一程序,输入月份号,输出该月的英文月名。例如，输人3,则输出"March" ,要求用指针数组处理。 
+//解题思路： 首先定义字符串指针数字，数组中每一个元素都存放一个字符串指针，每个指针指向不同字符串的位置。
+//则输入月份数字后，根据下标获取对应月份字符串的地址即可答案.
+//#include<stdio.h>
+//int main()
+//{
+//	int month;
+//	char* Month[12] = { "January","February","March","April","May","June", "July","August","September","October","November","December" };
+//	while (1) 
+//	{
+//		printf("Please enter the month: "); 
+//		scanf_s("%d", &month);
+//		if (month < 1 || month>12)
+//		{ 
+//			printf("Input error, Month should be greater than 0 and less than 12\n");
+//		}
+//		printf("%s\n", Month[month - 1]);
+//	}
+//	return 0;
+//}
+
+//19.(1) 编写一个函数new,对n个字符开辟连续的存储空间,此函数应返回一个指针(地址),指向字符串开始的空间。
+//new(n)表示分配n个字节的内存空间。(2)写一函数free,将前面用new函数占用的空间释放。free(p)表示将p(地址)指向的单元以后的内存段释放。
+//#include<stdio.h>
+//#include<stdlib.h>
+////new(n)表示分配n个字节的内存空间
+//void * mynew(int n)
+//{
+//	return malloc(n);
+//}
+//void myfree(char *p)
+//{
+//	return free(p);
+//}
+//int main()
+//{
+//	int num; char *str = NULL; 
+//	printf("Please enter number: ");
+//	scanf_s("%d", &num);
+//	printf("before new p--%p:%s\n", str, str);//申请空间之前，查看指针的地址和指向空间数据
+//	str = (char*)mynew(num);
+//	printf("after new p--%p:%s\n", str, str);//申请空间之后，查看指针的地址和指向空间数据 
+//	printf("Please enter a string:"); 
+//	scanf_s("%s", str, num);
+//	printf("before free p--%p:%s\n", str, str);//释放空间之前，查看指针的地址和指向空间数据 
+//	myfree(str);
+//	printf("after free p--%p:%s\n", str, str);//释放空间之后，查看指针的地址和指向空间数据 
+//	return 0;
+//}
+
+//更改1：
+//#include<stdio.h>
+//#define NEWSIZE 100
+//char newbuf[NEWSIZE];
+//char * newp=newbuf;
+//char * mynew(int n)
+//{
+//	if(newp+n<=newbuf+NEWSIZE)
+//	{
+//		newp+=n;
+//		return newp-n;
+//	}
+//	else
+//		return NULL;
+//}
+
+//20. 用指向指针的指针的方法对5个字符串排序并输出。
+//解题思路：指向指针的指针其实就是二级指针，使用二级指针的保存一级指针的地址，让这个一级指针指向具体的数据空间；
+//定义一个字符串指针数组包含5个元素，每个元素可以保存一个字符串的首地址，而这个地址指向的是具体的字符串数据空间，
+//通过指针访问实现对指向空间内的字符串进行比较排序交换即可。
+//
+//#include<stdio.h>
+//#include<string.h>
+//#include<stdlib.h>
+//void sort(char *s[10])
+//{
+//	int i, j;
+//	char *tmp;
+//	for (i = 0; i <9; i++)
+//	{
+//		for (j =0; j < 9-i; j++)
+//		{
+//			if (strcmp(s[j], s[j+1])> 0)
+//			{
+//				//s[i]保存的就是一个字符串的首地址 
+//				tmp = s[j]; //指针的好处在于直接通过赋值可以改变指向 
+//				s[j] = s[j+1];//只要交换了字符串的地址就实现了字符串的交换 
+//				s[j+1] = tmp;//因此通过指针指向的交换就能够实现数组中字符串的排序 
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int i;
+//	char *str[5];//定义字符串指针数组，可以分别保存指向5个字符串所在空间首地址 
+//	printf("Please enter five strings:\n"); 
+//	for (i = 0; i < 5; i++) 
+//	{
+//		str[i]= malloc(32);//为每一个指针分配空间 
+//		scanf_s("%s", str[i], 32);
+//	}
+//	sort(str);
+//	printf("\n");
+//	for (i = 0; i < 5; i++)
+//	{ 
+//		printf("%s\n", str[i]);
+//		free(str[i]);
+//	}
+//	return 0;
+//}
+
+//21. 用指向指针的指针的方法对n个整数排序并输出。要求将排序单独写成一个函数。n个整数在主函数中输入,最后在主函数中输出。
+//解题思路： 指向指针的指针其实就是二级指针，使用二级指针的保存一级指针的地址，让这个一级指针指向具体的数据空间。排序就是按照每个元素指针指向空间中的数据进行比对排序即可。
+//#include<stdio.h>
+//
+//void sort(int **p,int n)
+//{
+//	int i,j;
+//	int * temp;
+//	for(i=0;i<n;i++)
+//	{
+//		for(j=i+1;j<n;j++)
+//		{
+//			if(**(p+i)>**(p+j))
+//			{
+//				temp=*(p+i);
+//				*(p+i)=*(p+j);
+//				*(p+j)=temp;
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int i,n,data[20],*pt[20],**p;
+//	printf("input n:\n");
+//	scanf("%d",&n);
+//	for(i=0;i<n;i++)
+//	{
+//		pt[i]=&data[i];
+//	}
+//	printf("输入%d个整数\n",n);
+//	for(i=0;i<n;i++)
+//	{
+//		scanf("%d",pt[i]);
+//	}
+//	p=pt;
+//	sort(p,n);
+//	printf("Now,the sequence is:\n");
+//	for(i=0;i<n;i++)
+//	{
+//		printf("%d ",*pt[i]);
+//	}
+//	printf("\n");
+//	return 0;
+//}

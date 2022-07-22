@@ -1,7 +1,7 @@
-﻿生成启动时间为 2022-07-21 21:26:55。
+﻿生成启动时间为 2022-07-22 17:30:16。
      1>项目“D:\C语言\C语言代码\chap08\chap08\chap08.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
-         正在对“Debug\chap08.unsuccessfulbuild”执行 Touch 任务。
+         正在创建“Debug\chap08.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
          d:\vs2010\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt exercise01.c
          exercise01.c
@@ -19,4 +19,4 @@
 
 生成成功。
 
-已用时间 00:00:01.39
+已用时间 00:00:02.64
